@@ -1,0 +1,13 @@
+
+
+<view style="height: 20rpx;"></view>
+<block wx:for="{{list}}" wx:key="{{index}}">
+  <view class="online-wrap" bindtap="toClassDetail" data-id="{{item.classId}}">
+    <view>
+      <image class="online-img" mode="scaleToFill" src="{{item.classImage}}" ></image>
+    </view>
+    <view>
+      <view class="online-title">{{item.className}}</view>
+    </view>
+  </view>
+</block>

@@ -1,0 +1,10 @@
+
+
+
+
+<view class="title">{{banner.title}}</view>
+
+
+<view class="rich-text-cell">
+  <rich-text nodes="{{banner.content}}"></rich-text>
+</view>

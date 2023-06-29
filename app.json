@@ -1,0 +1,78 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/tiku/tiku",
+    "pages/tiku/questionList/questionList",
+    "pages/tiku/questions/questions",
+    "pages/learn/learn",
+    "pages/me/me",
+    "pages/me/errorList/errorList",
+    "pages/me/errorList/errorTypeList/errorTypeList",
+    "pages/me/errorList/errorQuestions/errorQuestions",
+    "pages/type/type",
+    "pages/index/bannerdetail/bannerdetail",
+    "pages/me/teacher/teacher",
+    "pages/me/teacher/apply/apply",
+    "pages/me/teacher/class_manage/class_manage",
+    "pages/me/teacher/class_manage/add/add",
+    "pages/me/teacher/class_manage/lesson_manage/lesson_manage",
+    "pages/index/classdetail/classdetail",
+    "pages/index/classdetail/watchvideo/watchvideo",
+    "pages/me/orders/orders",
+    "pages/type/search/search",
+    "pages/type/videos/videos",
+    "pages/tiku/examList/examList",
+    "pages/tiku/test/test",
+    "pages/tiku/test/testResult/testResult",
+    "pages/me/errorList/testErrorTypeList/testErrorTypeList",
+    "pages/me/errorList/testErrorQuestions/testErrorQuestions",
+    "pages/me/ranking/ranking"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#2F7CEE",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "white"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "tabBar": {
+    "color": "#616161",
+    "selectedColor": "#489ffa",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/home_no.png",
+        "selectedIconPath": "images/home_yes.png"
+      },
+      {
+        "pagePath": "pages/type/type",
+        "text": "分类",
+        "iconPath": "images/type_no.png",
+        "selectedIconPath": "images/type_yes.png"
+      },
+      {
+        "pagePath": "pages/learn/learn",
+        "text": "学习",
+        "iconPath": "images/learn_no.png",
+        "selectedIconPath": "images/learn_yes.png"
+      },
+      {
+        "pagePath": "pages/tiku/tiku",
+        "text": "题库",
+        "iconPath": "images/tiku_no.png",
+        "selectedIconPath": "images/tiku_yes.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的",
+        "iconPath": "images/me_no.png",
+        "selectedIconPath": "images/me_yes.png"
+      }
+    ]
+  }
+}

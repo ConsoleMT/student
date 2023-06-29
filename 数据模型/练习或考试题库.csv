@@ -1,0 +1,14 @@
+_id,answer,explain,optionA,optionB,optionC,optionD,title,type,type2
+1,"[""A"",""B"",""C"",""D""]",小程序页面四剑客：页面结构wxml、页面样式wxss、页面逻辑js、页面配置json,wxml,wxss,js,json,小程序页面结构有哪部分组成,小程序,基础知识
+2,"[""A"",""B"",""C""]",全局js文件：app.js ；全局配置文件： app.json  ；全局样式文件：app.wxss  ,app.js,app.json,app.wxss,index.wxml,以下哪些属于小程序全局文件,小程序,基础知识
+3,"[""A""]",wx.previewImage在新页面中全屏预览图片。预览的过程中用户可以进行保存图片、发送给朋友等操作。,wx.previewImage,wx.showToast,wx.request,wx.showModel,小程序中图片预览是用什么微信api？,小程序,中级知识
+4,"[""B""]",云开发包括：云数据库，云存储，云函数，内容管理,Mysql数据库,云存储,对象存储,后台接口,下列哪个属于云开发的组成内容？,小程序,中级知识
+5,"[""A""]",<navigator></navigator>标签/组件 通过设置url属性来跳入对应的页面,正确,错误,,,页面跳转组件/标签是<navigator></navigator>,小程序,中级知识
+6,"[""B""]","创建表比如，# 建表 # 学生表 CREATE TABLE `Student`(     `s_id` VARCHAR(20),     `s_name` VARCHAR(20) NOT NULL DEFAULT '',     `s_birth` VARCHAR(20) NOT NULL DEFAULT '',     `s_sex` VARCHAR(10) NOT NULL DEFAULT '',     PRIMARY KEY(`s_id`) );",insert into ,CREATE TABLE,update,delete,创建Mysql表的关键字是？,数据库,Mysql数据库
+7,"[""C"",""D""]",东三省是指辽宁吉林黑龙江,MongoDB,Redis,Oracle,Mysql,一下数据库，哪个是关系型数据库？,数据库,综合知识
+8,"[""A""]",浙江的省会是杭州,是,不是,,,杭州是浙江的省会吗？,地理,初中地理
+9,"[""A"",""B"",""C""]",,故宫,颐和园,长城,卢浮宫,下面那些是中国的著名景点,地理,高中地理
+10,"[""A"",""B"",""C""]","大于4的个位数有5,,6,7,8,9",5,6,7,3,下面那些是大于4的,数学,小学数学
+11,"[""A""]",1+9=10,对,错,,,1+9=10吗？,数学,小学数学
+12,"[""A""]",10+10=20,20,21,22,33,10+10等于多少,数学,小学数学
+17e3426e61e51951070132aa30fc6960,"[""A""]",研究生是考察政治的,考,不考,,,研究生考政治吗？,研究生,高数知识

@@ -1,0 +1,27 @@
+<view class="search" bindtap="toSearch">
+  搜索
+</view>
+
+  <view>
+    <block wx:for="{{typeList}}" wx:for-item="item">
+
+      <view class="big-type" bindtap="toVideosByTypeName" data-typeName="{{item.type}}">
+        <view class="big-type-left">
+          <view class="line"></view>
+          <view>{{item.type}}</view>
+        </view>
+        <view class="big-type-right">所有课程>></view>
+      </view>
+
+      <view class="small-type-wrap"> 
+        <block wx:for="{{item.field}}" wx:for-item="itemm">
+          <view class="field" bindtap="chooseField" bindtap="toVideosByFieldName" data-fieldName="{{itemm}}">{{itemm}}</view>
+        </block>
+      </view>
+
+    </block>
+  </view>
+
+
+
+  

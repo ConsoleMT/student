@@ -1,0 +1,20 @@
+<video id="myVideo" class="video-cell" src="{{videoUrl}}"></video>
+
+<view class="beisu">
+  <button type="normal" size="mini" bindtap='btnClick15' type="normal">1.5倍速播放</button>
+  <button type="normal" size="mini" bindtap='btnClick125' type="normal">1.25倍速播放</button>
+</view>
+
+<view class="class-title">课程大纲</view>
+<block wx:for="{{class.detail}}">
+  <view class="line-wrap" bindtap="{{item.type==2?'toWatchVideo':''}}" data-url="{{item.video}}" data-free="{{item.free}}" data-index="{{index}}">
+    <view class="line-left">
+      <view wx:if="{{item.type == 1}}" class="class-zhang">{{item.name}}</view>
+      <view wx:if="{{item.type == 2}}" class="class-jie {{currentFocuIndex==index?'focu':''}} ">{{item.name}}</view>
+    </view>
+    <view class="line-right">
+      <view wx:if="{{item.type == 2 && item.free == 1}}" class="free-cell">免费</view>
+      <view wx:if="{{item.type == 2 && item.duration}}" class="{{currentFocuIndex==index?'focu':''}}">{{item.duration}}</view>
+    </view>
+  </view>
+</block>

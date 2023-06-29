@@ -1,0 +1,15 @@
+.result {
+  margin: 50rpx 40rpx;
+  font-size: 40rpx;
+  padding: 50rpx 20rpx;
+  border: 1rpx solid #e7e7e7;
+  border-radius: 50rpx;
+  text-align: center;
+}
+.but {
+  margin: 50rpx 60rpx 30rpx 60rpx;
+  background: -webkit-linear-gradient(left,rgb(255, 220, 173),#fc3434);
+  color: white;
+  border-radius: 50rpx;
+  
+}

@@ -1,0 +1,50 @@
+
+.top-menu {
+  margin: 20rpx 20rpx 60rpx 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.input-cell{
+  padding: 20rpx 20rpx;
+  border-radius: 20rpx;
+  margin: 20rpx 20rpx;
+  border: solid 1rpx #f7f7f7;
+}
+.title-cell {
+  margin: 0rpx 20rpx;
+}
+.save-cell {
+  text-align: center;
+}
+.zhang-cell {
+  margin: 20rpx 20rpx;
+  width: 380rpx;
+  font-weight: 550;
+}
+.keshi-cell {
+  margin: 20rpx 40rpx;
+  width: 380rpx;
+}
+.line-block {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f7f7f7;
+}
+.line-keshi{
+  display: flex;
+  flex-direction: row;
+}
+.mini-but-1 {
+  margin: 0rpx 5rpx;
+  color: blue;
+  font-size: 26rpx;
+}
+.mini-but-2 {
+  margin: 0rpx 5rpx;
+  color: red;
+  font-size: 26rpx;
+}

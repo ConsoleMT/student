@@ -1,0 +1,58 @@
+
+
+
+<block wx:for="{{class.detail}}">
+<view class="line-block">
+
+  <view wx:if="{{item.type == 1}}" class="zhang-cell">{{item.name}}</view>
+  <view wx:if="{{item.type == 2}}" class="keshi-cell">{{item.name}}</view>
+
+  <view wx:if="{{item.type == 1}}" class="line-keshi">
+    <view wx:if="{{index == class.detail.length-1}}" class="mini-but-2" catchtap="delete" data-index="{{index}}">删除</view>
+    <!-- <view class="mini-but-2">编辑</view> -->
+  </view>
+
+  <view wx:if="{{item.type == 2}}" class="line-keshi">
+    <view class="mini-but-2" catchtap="delete" data-index="{{index}}">删除</view>
+    <!-- <view class="mini-but-2">编辑</view> -->
+    <view wx:if="{{item.video==''||item.video==null}}" class="mini-but-1" catchtap="chooseVideo" data-index="{{index}}">上传视频</view>
+    <view wx:if="{{item.video!=''&&item.video!=null}}" class="mini-but-1" catchtap="chooseVideo" data-index="{{index}}">更换视频</view>
+    <view wx:if="{{item.free == 0}}" class="mini-but-2" catchtap="setFree" data-index="{{index}}">设为免费</view>
+    <view wx:if="{{item.free == 1}}" class="mini-but-2" catchtap="cancelFree" data-index="{{index}}">取消免费</view>
+  </view>
+
+</view>
+</block>
+
+
+
+
+
+
+<view class="top-menu">
+  <button type="{{showZhang?'primary':'normal'}}" size="mini" bindtap="setShowZhang">添加新章</button>
+  <button type="{{showKeshi?'primary':'normal'}}" size="mini" bindtap="setShowKeshi">添加新课时</button>
+</view>
+
+<block wx:if="{{showZhang}}">
+<view class="title-cell">新章名称:</view>
+
+<form bindsubmit="submitZhang">
+  <input class="input-cell" type="text" placeholder="请输入章名称" maxlength="18" name="zhangName"/>
+
+  <view class="save-cell">
+    <button type="primary" size="mini" formType="submit">保存</button>
+  </view>
+</form>
+</block>
+
+<block wx:if="{{showKeshi}}">
+<view class="title-cell">新课时名称:</view>
+
+<form bindsubmit="submitKeshi">
+  <input class="input-cell" type="text" placeholder="请输入课时名称" maxlength="18" name="keshiName"/>
+  <view class="save-cell">
+    <button type="primary" size="mini" formType="submit">保存</button>
+  </view>
+</form>
+</block>

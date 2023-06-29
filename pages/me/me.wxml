@@ -1,0 +1,38 @@
+
+
+
+
+<view class="user-info">
+  <view wx:if="{{userInfo}}"><image src="{{userInfo.avatarUrl}}" bindtap="getUserProfile"></image></view>
+  <view wx:if="{{!userInfo}}"><image src="/images/touxiang.png"></image></view>
+  <view class="nickname">{{userInfo.nickName}}</view>
+  <button wx:if="{{!userInfo}}" bindtap="getUserProfile" class="login-but">登录</button>
+ 
+</view>
+
+
+
+
+
+<view class="menu-cell" bindtap="toMyOrder">
+  我的订单
+</view>
+
+<view class="menu-cell" bindtap="toMyRank">
+  我的排名
+</view>
+
+<view class="menu-cell" bindtap="toMyErrors">
+  我的错题
+</view>
+
+
+
+<view class="menu-cell" bindtap="toTeacherCenter">
+  老师中心
+</view>
+
+<view class="menu-cell" bindtap="loginOut" wx:if="{{userInfo}}">
+  退出登录
+</view>
+

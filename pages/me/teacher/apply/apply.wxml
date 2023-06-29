@@ -1,0 +1,49 @@
+<form bindsubmit="submitData">
+  <view class="input-title">讲师姓名</view>
+  <input value="{{teacher.name}}" type="text" class="input-cell" placeholder="请输入讲师名字" name="name"/>
+
+
+  <view class="input-title">联系电话</view>
+  <input value="{{teacher.phone}}" type="number" maxlength="11" class="input-cell" placeholder="请输入联系电话" name="phone"/>
+  <view class="input-title">个人简介</view>
+  <view class="input-wrap">
+    <textarea placeholder="请输入个人简介" class="input-text" maxlength="2000" name="introduce" value="{{teacher.introduce}}"></textarea>
+  </view>
+
+  <view class="input-title">讲师照片</view>
+
+<view class="img-wrap">
+
+  <block wx:for="{{cloudImgList}}" wx:key="index">
+    <view class="one-img">
+      <image src="{{item}}" class="img-choose"></image>
+      <image src="/images/close.png" class="close-img" bindtap="deleteImg" data-index="{{index}}"></image>
+    </view>
+  </block>
+
+
+  <view class="one-img" bindtap="chooseImage" wx:if="{{cloudImgList.length < 1}}">
+    <image src="/images/addphoto.png" class="img-choose"></image>
+  </view>
+
+</view>
+
+<view class="progress" wx:if="{{teacher.ispass == 0}}">状态：审核中</view>
+<view class="progress" wx:if="{{teacher.ispass == 1}}">状态：审核通过</view>
+
+
+<button formType="submit" type="primary">提交申请</button>
+<!-- <view class="info">更新信息会进入审核状态</view> -->
+
+
+
+</form>
+
+
+
+
+
+
+
+
+

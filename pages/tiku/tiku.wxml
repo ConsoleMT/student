@@ -1,0 +1,47 @@
+<view class="date">
+  <view>
+    {{month}}月{{day}}日  {{week}}
+  </view>
+  <view>
+    欢迎来到课余题库
+  </view>
+</view>
+
+<!-- 轮播图区域 -->
+<!-- <swiper class="home_swiper" indicator-dots autoplay interval="5000" duration="500" indicator-active-color="white" circular>
+    <block wx:for="{{bannerList}}" wx:key="index">
+      <swiper-item class="swiper_item">
+        <image src="{{item.cover}}" class="slide_image" bindtap="toBannerDetail" data-id="{{item._id}}" />
+      </swiper-item>
+    </block>
+</swiper> -->
+
+
+
+
+
+
+<!-- 分类答题 -->
+
+<!-- <view class="title">随机练习</view> -->
+
+<view class="top" bindtap="goRandom">
+  随机练习
+</view>
+
+<view class="title">专项练习:</view>
+
+<view class="item_root">
+  <block wx:for="{{list}}" wx:key="index">
+    <view class="item" bindtap="goQuestionList" data-type="{{item._id}}">{{item._id}}({{item.num}}道题)</view>
+  </block>
+</view>
+
+
+<view class="title">模拟考试:</view>
+
+<view class="item_root">
+  <block wx:for="{{examList}}" wx:key="index">
+    <view class="item" bindtap="goExamQuestionList" data-type="{{item._id}}">{{item._id}}({{item.num}}道题)</view>
+  </block>
+</view>

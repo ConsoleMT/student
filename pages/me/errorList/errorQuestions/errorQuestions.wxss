@@ -1,0 +1,43 @@
+.tip {
+  text-align: center;
+  color: red;
+  margin: 40rpx;
+  font-size: 42rpx;
+}
+.type {
+  color: red;
+  margin-bottom: 20rpx;
+  margin-left: 20rpx;
+}
+.ti-title {
+  margin-left: 20rpx;
+  font-size: 40rpx;
+}
+.item {
+  margin: 20rpx;
+}
+
+.red {
+  color: red;
+  
+}
+.user-choose {
+  color: red;
+  margin-left: 20rpx;
+}
+.rigth_option {
+  margin-bottom: 20rpx;
+  font-size: 32rpx;
+  color: rgb(0, 163, 0);
+  margin-left: 20rpx;
+}
+
+.btn_root {
+  display: flex;
+  justify-content: space-between;
+  padding: 40rpx;
+}
+.ti-answer {
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+}

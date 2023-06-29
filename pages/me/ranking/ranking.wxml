@@ -1,0 +1,19 @@
+
+<view>
+  <view class="tip">积分排行榜</view>
+  <block wx:for="{{userList}}" wx:key="index">
+    <view class="item_root {{index==0?'red':''}}">
+      <view class="left">
+        
+        <text>{{index+1}}. </text>
+        <image class="face" src="{{item.avatarUrl}}"></image>
+        <text>{{item.name?item.name:item.nickName}}</text>
+      </view>
+      <text>{{item.score?item.score:0}}分</text>
+    </view>
+  </block>
+</view>
+
+<view class="top_root">
+  <view class="top_btn" bindtap="goQuestions">答题赚积分，Go!</view>
+</view>

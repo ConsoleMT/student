@@ -1,0 +1,24 @@
+.menu-cell {
+  text-align: center;
+  margin: 50rpx 20rpx;
+  border-bottom: 1rpx solid #e7e7e7;
+  padding-bottom: 40rpx;
+}
+
+.user-info {
+  margin: 50rpx 0 100rpx 0;
+  text-align: center;
+}
+.user-info image{
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 50%;
+}
+.login-but {
+  background-color: #237EF2;
+  color: #fff;
+  margin-top: 20rpx;
+}
+.nickname {
+  margin-top: 20rpx;
+}

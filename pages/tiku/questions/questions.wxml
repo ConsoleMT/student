@@ -1,0 +1,103 @@
+<view class="tip">第{{current}}题/共{{total}}题</view>
+<progress class="pro" percent="{{percent}}" show-info border-radius='30' stroke-width="10" />
+
+<view class="type">
+  题型：
+  <text wx:if="{{subject.answer.length==1}}">单选/判断题</text>
+  <text wx:elif="{{subject.answer.length>1}}">多选题</text>
+  <!-- <text wx:else>单选题</text> -->
+</view>
+
+<view class="ti-type">类型：{{subject.type2}}</view>
+<view class="ti-title">题目：{{subject.title}}</view>
+
+<!-- 单选和判断 -->
+<radio-group wx:if="{{subject.answer.length==1}}" bindchange="selectClick">
+
+  <!-- <view wx:for="{{subject.options}}" wx:key="index" class="item">
+    <radio value="{{item.code}}" checked="{{isSelect}}" />
+    <text>{{item.code}}:{{item.option}}</text>
+  </view> -->
+
+  <view class="item">
+    <radio value="A" checked="{{isSelect}}" />
+    <text>A:{{subject.optionA}}</text>
+  </view>
+
+  <view class="item">
+    <radio value="B" checked="{{isSelect}}" />
+    <text>B:{{subject.optionB}}</text>
+  </view>
+
+  <view class="item" wx:if="{{subject.optionC}}">
+    <radio value="C" checked="{{isSelect}}" />
+    <text>C:{{subject.optionC}}</text>
+  </view>
+
+  <view class="item" wx:if="{{subject.optionD}}">
+    <radio value="D" checked="{{isSelect}}" />
+    <text>D:{{subject.optionD}}</text>
+  </view>
+
+</radio-group>
+<!-- 多选 -->
+<checkbox-group wx:else bindchange="selectClick">
+  <!-- <view wx:for="{{subject.options}}" wx:key="index" class="item">
+    <checkbox value="{{item.code}}" checked="{{isSelect}}" />
+    <text>{{item.code}}:{{item.option}}</text>
+  </view> -->
+  <view class="item">
+    <checkbox value="A" checked="{{isSelect}}" />
+    <text>A:{{subject.optionA}}</text>
+  </view>
+  <view class="item">
+    <checkbox value="B" checked="{{isSelect}}" />
+    <text>B:{{subject.optionB}}</text>
+  </view>
+  <view class="item" wx:if="{{subject.optionC}}">
+    <checkbox value="C" checked="{{isSelect}}" />
+    <text>C:{{subject.optionC}}</text>
+  </view>
+  <view class="item" wx:if="{{subject.optionD}}">
+    <checkbox value="D" checked="{{isSelect}}" />
+    <text>D:{{subject.optionD}}</text>
+  </view>
+</checkbox-group>
+<!-- 提交按钮 -->
+<button class="but" bindtap="ok">查看答案和解析</button>
+
+<!-- 正确答案、解析 -->
+<block wx:if="{{showAnswer}}">
+  <view class="answer-jiexi">
+    <view class="ok">
+      <view class="answer-title">你的答案：</view>
+      <block wx:for="{{userSelect}}">
+        <text>{{item}}  </text>
+      </block>
+    </view>
+
+    <view class="ok">
+      <view class="answer-title">正确答案：</view>
+      <block wx:for="{{subject.answer}}">
+        <text>{{item}}  </text>
+      </block>
+    </view>
+
+    <view class="ok">
+      <view class="answer-title">解析：</view>
+      <view>{{subject.explain}}</view>
+    </view>
+  </view>
+</block>
+
+
+<button type="primary" class="but" bindtap="submit" hidden="{{hideButton}}">下一题</button>
+<!-- 得分和错题 -->
+<block wx:if="{{totalScore>-1}}">
+  
+  <view class="result">
+    <view>获得积分：{{totalScore}}</view>
+    您答错了{{totalError}}道题，
+    <text class="to-error" bindtap="seeError" wx:if="{{totalError>0}}">点击查看您的错题集</text>
+  </view>
+</block>

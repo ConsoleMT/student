@@ -1,0 +1,17 @@
+
+<view class="tishi-info" wx:if="{{list.length == 0}}">没有记录</view>
+
+<view class="video_wrap">
+  <block wx:for="{{list}}" >
+    <view class="video_item" bindtap="toClassDetail" data-id="{{item._id}}">
+
+      <image src="{{item.images}}" class="course-img"></image>
+      <view class="course-title">{{item.name}}</view>
+      <view class="price" wx:if="{{item.price == 0}}">免费</view>
+      <view class="price" wx:if="{{item.price != 0}}">￥{{item.price}}</view>
+
+    </view>
+  </block>
+
+
+</view>

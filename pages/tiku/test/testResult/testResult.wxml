@@ -1,0 +1,8 @@
+<view class="result">
+    <view>获得积分：{{totalScore}}</view>
+    <view>
+      您答错了{{totalError}}道题,用时{{testTimeMin}}分{{testTimeSec}}秒
+    </view>
+
+    <view class="but" bindtap="seeError" wx:if="{{totalError>0}}">点击查看错题集</view>
+</view>

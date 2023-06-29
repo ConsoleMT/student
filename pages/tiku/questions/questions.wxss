@@ -1,0 +1,58 @@
+.tip {
+  text-align: center;
+  color: red;
+  margin: 30rpx;
+  font-size: 42rpx;
+}
+
+.type {
+  color: red;
+  margin-bottom: 20rpx;
+  margin-left: 20rpx;
+}
+.ti-type {
+  margin-left: 20rpx;
+  margin-bottom: 20rpx;
+}
+.ti-title {
+  margin-left: 20rpx;
+  font-size: 40rpx;
+  margin-bottom: 20rpx;
+  font-weight: 550;
+}
+
+.item {
+  margin: 25rpx;
+}
+
+.pro {
+  margin: 20rpx;
+}
+
+.but {
+  margin: 50rpx 40rpx;
+}
+
+.ok {
+  margin: 20rpx 20rpx;
+}
+
+.result {
+  margin: 80rpx 40rpx;
+  font-size: 40rpx;
+}
+
+.answer-title {
+  margin: 10rpx 0rpx;
+}
+
+.to-error {
+  color: red;
+}
+
+.answer-jiexi {
+  padding: 30rpx 20rpx;
+  border: 1rpx solid #ebebeb;
+  border-radius: 40rpx;
+  margin: 0 40rpx;
+}

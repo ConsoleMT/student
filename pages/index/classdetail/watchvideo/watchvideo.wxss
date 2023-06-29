@@ -1,0 +1,57 @@
+.class-title {
+  margin: 40rpx 20rpx;
+  font-size: 36rpx;
+  font-weight: bolder;
+}
+.class-introduce {
+  margin: 20rpx 20rpx;
+}
+.class-zhang {
+  margin: 30rpx 0rpx;
+  font-weight: bold;
+}
+.class-jie {
+  margin: 30rpx 0rpx 30rpx 20rpx;
+}
+
+.line {
+  height: 30rpx;
+  background-color: #f7f7f7;
+}
+
+.line-wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+  margin: 0rpx 20rpx;
+  align-items:center;
+}
+
+.free-cell {
+  background: -webkit-linear-gradient(left,#FFAF50,#FC7340,#FD2244);
+  border-radius: 20rpx;
+  font-size: 26rpx;
+  color: #fff;
+  padding: 5rpx 10rpx;
+  margin-right: 15rpx;
+}
+.video-cell {
+  width: 100%;
+}
+
+.line-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.focu {
+  font-weight: bolder;
+  color: #FC7340;
+}
+
+.beisu {
+  display: flex;
+  flex-direction: row;
+  margin: 20rpx 20rpx;
+}

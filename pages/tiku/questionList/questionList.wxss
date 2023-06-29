@@ -1,0 +1,19 @@
+.tip {
+  color: #FF5850;
+  font-size: 48rpx;
+  margin: 40rpx 40rpx;
+}
+
+.item {
+  margin: 10rpx 30rpx;
+  border-bottom: 1px solid gray;
+  padding: 35rpx 10rpx 35rpx 20rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  color: #FF5850;
+  padding: 5rpx 20rpx;
+  border: 1px solid #FF5850;
+}

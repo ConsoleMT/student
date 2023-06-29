@@ -1,0 +1,95 @@
+
+<image class="class-img" bindtap="previewImg"  mode="scaleToFill" src="{{class.images}}" ></image>
+<view class="class-name">
+
+  <view>{{class.name}}</view>
+  <button open-type="share" class="class-name-share">
+    <image class="class-name-image" src="/images/share.png"></image>
+  </button>
+</view>
+<view class="line"></view>
+
+
+<view class="class-title" >老师介绍</view>
+
+<view class="teacher-info-wrap">
+  <view>
+    <image bindtap="previewFaceImg" mode="scaleToFill" class="teacher-img" src="{{teacher.image}}"></image>
+  </view>
+  <view>
+    <view style="margin-bottom:10rpx;">{{teacher.name}}</view>
+    <view>{{teacher.introduce}}</view>
+  </view>
+</view>
+
+<view class="class-title" >课程介绍</view>
+
+<view class="class-introduce">
+  <text>{{class.introduce}}</text>
+</view>
+<view class="line"></view>
+
+
+
+<view class="class-title">课程大纲</view>
+<block wx:for="{{class.detail}}" wx:key="index">
+  <view class="line-wrap" bindtap="{{item.type==2?'toWatchVideo':''}}" data-free="{{item.free}}" data-url="{{item.video}}">
+    <!-- <video src="" controls></video> -->
+    <view class="line-left">
+      <view wx:if="{{item.type == 1}}" wx:key="index" class="class-zhang">{{item.name}}</view>
+      <view wx:if="{{item.type == 2}}" wx:key="index" class="class-jie">{{item.name}}</view>
+    </view>
+
+    <view class="line-right">
+
+      <view>
+        <view wx:if="{{item.type == 2 && item.free == 1}}"wx:key="index" class="free-cell">免费</view>
+      </view>
+
+      <view wx:if="{{item.type == 2 && !item.duration}}" wx:key="index">
+        <image class="bofang" src="https://wdxxy-1300236234.cos.ap-chengdu.myqcloud.com/icon/bofang.png"></image>
+      </view>
+
+      <view wx:if="{{item.type == 2 && item.duration}}" wx:key="index">
+        {{item.duration}}
+      </view>
+
+    </view>
+    
+
+  </view>
+</block>
+
+
+<block wx:if="{{class.circle!=undefined && class.circle.length!=0}}" wx:key="index">
+<view class="line"></view>
+<view class="class-title">关联圈子</view>
+<view class="add-circle-wrap">
+<block wx:for="{{class.circle}}" wx:key="index">
+  <view class="one-cell" bindtap="toCircleDetail" data-id="{{item.id}}">
+    <image src="{{item.coverUrl}}"></image>
+    <view class="circle-title">{{item.title}}</view>
+  </view>
+</block>
+</view>
+</block>
+
+
+
+<view style="height:150rpx"></view>
+
+
+
+<view class="bot-menu">
+
+  <view wx:if="{{payed == false}}" class="price" wx:key="index">￥{{class.price}}</view>
+  <view wx:if="{{payed == true}}" class="price" wx:key="index">已购买</view>
+  <view wx:if="{{payed == false}}" class="buy-cell" bindtap="buy"  wx:key="index">立即购买</view>
+  <view wx:if="{{payed == true}}" class="buy-cell" bindtap="toDetail"  wx:key="index">开始学习</view>
+
+</view>
+
+
+
+
+

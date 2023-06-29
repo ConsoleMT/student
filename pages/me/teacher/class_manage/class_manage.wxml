@@ -1,0 +1,37 @@
+
+
+
+
+<navigator class="go-nav" url="/pages/me/teacher/class_manage/add/add">新增课程</navigator>
+
+
+<view style="margin:40rpx 20rpx 20rpx 20rpx;font-weight:bold;">课程列表：<block wx:if="{{list.length==0}}">还没有课程，快去发布吧！</block></view>
+
+<block wx:for="{{list}}">
+
+<view class="top" bindtap="{{item.ispass==1?'toClassDetail':''}}"  data-id="{{item._id}}">
+
+  <view> 
+    <image class="cover" src="{{item.images}}"></image>
+  </view>
+  <view class="right">
+    <view class="xh">{{item.name}}</view>
+    <view class="status">价格：{{item.price}}元</view>
+
+    <view class="status">状态：{{item.ispass?'已通过':'审核中'}}</view>
+    <view style="color: orange;">{{item.time}}</view>
+
+  </view>
+
+</view>
+
+<view class="bottom">
+  
+    <!-- <button type="normal" size="mini" catchtap="toAddCircle"  data-id="{{item._id}}">关联圈子</button> -->
+    <!-- <button type="primary" size="mini" wx:if="{{item.ispass == 0}}" bindtap="pass"  data-id="{{item._id}}">通过</button> -->
+    <button type="normal" size="mini" catchtap="toEdit"  data-id="{{item._id}}">课程编辑</button>
+    <button type="primary" size="mini" catchtap="toAddVideo"  data-id="{{item._id}}">课时编辑</button>
+  
+</view>
+
+</block>

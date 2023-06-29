@@ -1,0 +1,46 @@
+
+
+<swiper class="home_swiper" indicator-dots autoplay interval="5000" duration="500" indicator-active-color="white" circular>
+    <block wx:for="{{bannerList}}" wx:key="index">
+      <swiper-item class="swiper_item">
+        <image wx:if="{{item.cover}}"  src="/images/lun3.jpg"  class="slide_image" bindtap="toBannerDetail" data-id="{{item._id}}" />
+      </swiper-item>
+    </block>
+</swiper>
+
+<!-- <view class="search" bindtap="toSearch">
+  搜索
+</view> -->
+
+<view class="main-core">
+  <block wx:for="{{typeList}}" wx:key="index">
+    <navigator hover-class="none" class="main-core-item" url="/pages/type/videos/videos?typeName={{item.type}}">
+      <image class="core-item-icon" wx:if="{{item.image}}" src="/images/python.png"></image>
+      <text class="core-item-name">{{item.type}}</text>
+    </navigator>
+  </block>
+</view>
+
+
+<view class="video_wrap">
+  <block wx:for="{{list}}" wx:key="index">
+    <view class="video_item" bindtap="toClassDetail" data-id="{{item._id}}">
+
+      <image src="{{item.images}}" class="course-img"></image>
+      <view class="course-title">{{item.name}}</view>
+      <view class="flex-wrap">
+        <view class="people-num">{{item.orderCount}}人学习</view>
+        <view class="price" wx:if="{{item.price == 0}}">免费</view>
+        <view class="price" wx:if="{{item.price != 0}}">￥{{item.price}}</view>
+      </view>
+
+    </view>
+  </block>
+</view>
+
+
+
+
+
+
+

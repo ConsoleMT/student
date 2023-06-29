@@ -1,0 +1,10 @@
+<view class="tip">{{type}}错题集</view>
+
+<view class="time-total">用时：{{testResult.time}}，总共：{{testResult.total}}题，错题：{{testResult.totalError}}</view>
+
+<block wx:for="{{list}}" wx:key="index">
+  <view class="item">
+    <text>{{item._id}}({{item.num}}道错题)</text>
+    <text class="btn" bindtap="goDetail" data-type2="{{item._id}}">去复习</text>
+  </view>
+</block>

@@ -1,0 +1,29 @@
+.tip {
+  color: #FF8247;
+  font-size: 48rpx;
+  margin: 20rpx 40rpx;
+}
+
+.item {
+  margin: 20rpx 40rpx;
+  border-bottom: 1px solid gray;
+  padding: 35rpx 10rpx;
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+.btn {
+  color: red;
+  padding: 5rpx 5rpx;
+  border: 1px solid red;
+}
+
+.time-total {
+  padding: 40rpx 20rpx;
+  border: 1rpx solid #dddddd;
+  text-align: center;
+  margin: 40rpx 40rpx 60rpx 40rpx;
+  font-size: 40rpx;
+  font-weight: 550;
+}

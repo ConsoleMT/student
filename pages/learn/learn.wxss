@@ -1,0 +1,31 @@
+
+/* 在线课程 */
+.online-wrap {
+  margin: 0rpx 40rpx 20rpx 40rpx;
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 20rpx;
+  border-bottom: solid 1rpx #f7f7f7;
+}
+.online-img {
+  width: 240rpx;
+  height: 190rpx;
+  border-radius: 20rpx;
+}
+.online-title {
+  font-size: 34rpx;
+  margin: 10rpx 0rpx 0rpx 20rpx;
+  
+}
+.online-tag {
+  color: #515151;
+  margin-left: 20rpx;
+  margin-top: 15rpx;
+  font-size: 26rpx;
+}
+.sub-title {
+  color: #999999;
+  font-weight: normal;
+  font-size: 30rpx;
+  margin-left: 10rpx;
+}

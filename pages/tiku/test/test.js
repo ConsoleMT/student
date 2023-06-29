@@ -1,0 +1,377 @@
+const app = getApp()
+const db = wx.cloud.database()
+const dbQuestions = db.collection('tiku_exams')
+const util = require("../../../utils/util");
+const _ = db.command
+let titles = [] //题库
+
+
+
+Page({
+  data: {
+    hour:'00',
+    minute:'00',
+    second:'00',
+    showScore:false,//是否展示成绩
+    testTime:0,//考试用时
+    errorOptions:[],
+
+
+    showAnswer:false,
+    percent: 0,
+    total: 0,
+    isSelect: false,
+    subject: null,
+    userSelect: '',
+    userScore: 0, //用户答对了几道题
+    totalScore: 0, //用户总得分
+    totalError: 0, //用户答错几道题
+    current: 1 //从第一道题开始
+  },
+  //一进入页面就会执行的生命周期
+  onLoad(e) {
+
+
+    //开始计时
+    this.time60()
+
+    console.log('答题页', e)
+    if (e.type1 && e.type2) { //按类型答题
+      wx.setNavigationBarTitle({
+        title: e.type2 + '答题',
+      })
+      dbQuestions.where({
+          type: e.type1,
+          type2: e.type2
+        }).get()
+        .then(res => {
+          console.log("题库", res)
+          titles = res.data
+          let subject = titles[0]
+          console.log('subject', subject)
+          this.setData({
+            subject,
+            total: titles.length
+          })
+          //生成考试id
+          this.setData({
+            testId: util.formatTime(new Date()) + this.data.subject.type + '考试'
+          })
+        })
+    } else { //随机题库
+      wx.setNavigationBarTitle({
+        title: '随机答题',
+      })
+      dbQuestions.aggregate()
+        .sample({
+          size: app.globalData.randomNum //随机获取几道题，比如这里随机返回5道题
+        })
+        .end()
+        .then(res => {
+          console.log("随机题库", res)
+          titles = res.list
+          let subject = titles[0]
+          this.setData({
+            subject,
+            total: titles.length
+          })
+          //生成考试id
+          this.setData({
+            testId: util.formatTime(new Date()) + this.data.subject.type + '考试'
+          })
+        })
+    }
+
+    // 答题时提示用需要登陆注册才可以参加排名
+    // 发布之前先判断是否登录和注册
+    if (!app.globalData.userInfo) {
+      wx.showModal({
+        title: "需要参加积分排名吗？",
+        content: '只有授权登陆并注册用户后才可以参与积分排名，取消后本次答题不计入积分排行里',
+        success: res => {
+          if (res.confirm) {
+            wx.switchTab({
+              url: '/pages/me/me',
+            })
+          }
+        }
+      })
+    }
+
+
+  },
+  //用户选择
+  selectClick(e) {
+    console.log(e.detail.value)
+    this.setData({
+      userSelect: e.detail.value
+    })
+  },
+  //提交答题,并切换到下一题
+  submit() {
+    this.setData({
+      showAnswer:false
+    })
+    //1，获取用户选项并判空
+    let userSelect = this.data.userSelect
+
+    if (!userSelect || userSelect.length < 1) {
+      wx.showToast({
+        icon: 'none',
+        title: '请做选择',
+      })
+      return
+    }
+    //2,如果用户有选择，就更新进度条
+    let currentNum = this.data.current
+    
+    //更新进度条
+    this.setData({
+      percent: (currentNum / titles.length * 100).toFixed(1)
+    })
+
+    //3，判断用户是否答对
+    console.log('用户选项', userSelect)
+    console.log('正确答案', this.data.subject.answer)
+    if (userSelect instanceof Array) { //多选的时候，把选项转字符串
+      console.log('是数组')
+      userSelect = userSelect.sort().toString()
+    }
+    if (this.data.subject.answer.sort().toString() == userSelect) {
+      console.log('用户答对了第' + currentNum + "道题")
+      this.setData({
+        userScore: this.data.userScore + 1
+      })
+    } else {
+      //4,记录用户答错的题，方便用户查漏补缺
+      let subjectNow = this.data.subject
+      subjectNow.userSelect = userSelect
+
+      this.data.errorOptions.push(subjectNow)
+      let temp = {}
+      Object.assign(temp, subjectNow)
+      delete temp._id
+      let userInfo = wx.getStorageSync('user') || {}
+      temp.nickName = userInfo && userInfo.nickName ? userInfo.nickName : '未登陆用户'
+      console.log('临时错题', temp)
+
+      //设置考试id
+      temp.testId = this.data.testId
+
+      // 添加用户错题到数据库
+      db.collection('tiku_test_errors').add({
+        data: temp
+      }).then(res => {
+        console.log('添加错题到数据库', res)
+      })
+      console.log('错题', subjectNow)
+    }
+
+
+    // 5,在答完最后一道题的时候，对用户进行打分
+    if (currentNum + 1 > titles.length) {
+      let totalScore = this.data.userScore
+      console.log('用户一共答对了' + totalScore + "道题")
+      console.log('用户错题集', this.data.errorOptions)
+      this.setData({
+        totalScore: totalScore,
+        totalError: this.data.errorOptions.length,
+        hideButton: true //最后一题时隐藏按钮
+      })
+      wx.showToast({
+        icon: 'none',
+        title: '已经最后一道啦',
+      })
+      // this.addScore(totalScore)
+      return
+    }
+
+    let subject = titles[currentNum]
+    this.setData({
+      userSelect: '',
+      subject,
+      current: currentNum + 1,
+      isSelect: false,
+    })
+  },
+  //去查看错题集
+  seeError() {
+    console.log('点击了查看错题集')
+    //跳页
+    wx.switchTab({
+      url: '/pages/errorList/errorList'
+    })
+  },
+  //添加积分
+  addScore(score) {
+    // 发布之前先判断是否登录和注册,如果没有就不计分
+    if (!app.globalData.userInfo) {
+      return
+    }
+    db.collection('online_class_user').doc(app.globalData.userInfo._id).update({
+      data: {
+        score: _.inc(score)
+      }
+    }).then(res => {
+      wx.showToast({
+        title: '积分生效',
+      })
+    })
+  },
+  //查看答案
+  ok(){
+    //1，获取用户选项并判空
+    let userSelect = this.data.userSelect
+    if (!userSelect || userSelect.length < 1) {
+      wx.showToast({
+        icon: 'none',
+        title: '请做选择',
+      })
+      return
+    }
+    this.setData({
+      showAnswer:true
+    })
+  },
+  //提交考试
+  testEnd(){
+
+    //1，获取用户选项并判空
+    let userSelect = this.data.userSelect
+
+    if (!userSelect || userSelect.length < 1) {
+      wx.showToast({
+        icon: 'none',
+        title: '请做选择',
+      })
+      return
+    }
+    
+    wx.showLoading({
+      title: '提交中',
+      mask:true
+    })
+    this.setData({
+      showScore: true, //最后一题时隐藏按钮
+      testTimeMin: this.data.testTimeMin,
+      testTimeSec: this.data.testTimeSec,
+    })
+    
+    //2,如果用户有选择，就更新进度条
+    let currentNum = this.data.current
+    //3，判断用户是否答对
+    console.log('用户选项', userSelect)
+    console.log('正确答案', this.data.subject.answer)
+    if (userSelect instanceof Array) { //多选的时候，把选项转字符串
+      console.log('是数组')
+      userSelect = userSelect.sort().toString()
+    }
+    if (this.data.subject.answer.sort().toString() == userSelect) {
+      console.log('用户答对了第' + currentNum + "道题")
+      this.setData({
+        userScore: this.data.userScore + 1
+      })
+    } else {
+      //4,记录用户答错的题，方便用户查漏补缺
+      let subjectNow = this.data.subject
+      subjectNow.userSelect = userSelect
+
+      this.data.errorOptions.push(subjectNow)
+      let temp = {}
+      Object.assign(temp, subjectNow)
+      delete temp._id
+      let userInfo = wx.getStorageSync('user') || {}
+      temp.nickName = userInfo && userInfo.nickName ? userInfo.nickName : '未登陆用户'
+      console.log('临时错题', temp)
+
+      //设置考试id
+      temp.testId = this.data.testId
+
+      // 添加用户错题到数据库
+      db.collection('tiku_test_errors').add({
+        data: temp
+      }).then(res => {
+        console.log('添加错题到数据库', res)
+      })
+      console.log('错题', subjectNow)
+    }
+
+    // 5对用户进行打分
+    let totalScore = this.data.userScore
+      console.log('用户一共答对了' + totalScore + "道题")
+      console.log('用户错题集', this.data.errorOptions)
+      this.setData({
+        totalScore: totalScore,
+        totalError: this.data.errorOptions.length,
+        hideButton: true //最后一题时隐藏按钮
+      })
+      wx.showToast({
+        icon: 'none',
+        title: '已经最后一道啦',
+      })
+      this.addScore(totalScore)
+
+    //添加积分
+    this.addScore(this.data.totalScore)
+ 
+    //停止倒计时
+    clearInterval(this.data.timeInterval)
+  
+    
+    wx.cloud.database().collection('tiku_test_results').add({
+      data:{
+        faceImg:app.globalData.userInfo.avatarUrl,
+        nickName:app.globalData.userInfo.nickName,
+        testId:this.data.testId,
+        time:this.data.testTimeMin + '分' + this.data.testTimeSec + '秒',
+        totalError:this.data.totalError,//答错xx道
+        total:this.data.total//答错xx道
+      }
+    }).then(res=>{
+      wx.hideLoading({
+        success: (res) => {
+          wx.showToast({
+            title: '提交成功',
+          })
+          
+          wx.redirectTo({
+            url: '/pages/tiku/test/testResult/testResult?totalError=' + this.data.totalError + '&testTimeMin=' + this.data.testTimeMin + '&testTimeSec=' + this.data.testTimeSec + '&totalScore=' + this.data.totalScore,
+          })
+          
+        },
+      })
+
+    })
+
+
+  },
+  //倒计时1小时
+  time60(){
+    var that =this;
+    var time = new Date()
+    time.setMinutes(time.getMinutes() + 90)
+    var endTime = util.formatTime(time)
+    console.log(endTime)
+
+    var a = setInterval(function(){
+      var chaTime = new Date(endTime) - new Date()
+      that.setData({
+        hour:parseInt(chaTime/60/1000/60),
+        minute:parseInt(chaTime/60/1000) - parseInt(chaTime/60/1000/60) * 60,
+        second:parseInt(chaTime/1000) - (parseInt(chaTime/60/1000) - parseInt(chaTime/60/1000/60) * 60) * 60 - parseInt(chaTime/60/1000/60) * 60 * 60
+      })
+      
+      that.setData({
+        testTime: that.data.testTime + 1,
+      })
+      that.setData({
+        testTime: that.data.testTime,
+        testTimeMin:parseInt(that.data.testTime/60),
+        testTimeSec:that.data.testTime - that.data.testTimeMin *60
+      })
+    },1000)
+    this.setData({
+      timeInterval:a
+    })
+  },
+})

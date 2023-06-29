@@ -1,0 +1,52 @@
+.go-nav {
+  padding: 40rpx 0;
+  text-align: center;
+  font-size: 36rpx;
+  border-bottom: 1rpx solid #f7f7f7;
+  background-color: #f7f7f7;
+}
+
+
+
+.top {
+  padding: 20rpx 20rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.cover{
+  width: 220rpx;
+  height: 220rpx;
+  margin-right: 20rpx;
+}
+.bottom {
+  padding: 10rpx 20rpx 20rpx 20rpx;
+  
+  font-size: 28rpx;
+  border-bottom: solid 10rpx rgb(241, 241, 241);
+  /* text-align: right; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+} 
+.price {
+  /* color: red; */
+  font-weight: 530;
+  font-size: 34rpx;
+ 
+}
+.status {
+  color: red;
+  font-weight: 530;
+  font-size: 34rpx;
+}
+.xh {
+  
+  font-size: 34rpx;
+  /* font-weight: 550; */
+}
+.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}

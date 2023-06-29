@@ -1,0 +1,72 @@
+
+.pub-wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-right: 20rpx;
+}
+.pub-text {
+  background-color: blue;
+  color: #fff;
+  width: 120rpx;
+  height: 60rpx;
+  border-radius: 10rpx;
+  text-align: center;
+  line-height: 60rpx;
+  font-size: 28rpx;
+}
+
+.input-wrap {
+  margin: 20rpx 20rpx;
+}
+.input-text {
+  height: 300rpx;
+  width: 100%;
+  border: 1rpx solid blue;
+  border-radius: 20rpx;
+  padding: 10rpx 0rpx;
+}
+
+.img-wrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 20rpx 30rpx;
+}
+.one-img {
+  position: relative;
+  margin: 4rpx 8rpx;
+}
+.img-choose {
+  width: 210rpx;
+  height: 210rpx;
+}
+.close-img {
+  width: 30rpx;
+  height: 30rpx;
+  position: absolute;
+  right: 4rpx;
+  top: 4rpx;
+}
+
+
+.input-cell {
+  margin: 20rpx 20rpx;
+  padding: 20rpx 20rpx;
+  border: 1rpx solid blue;
+  border-radius: 20rpx;
+}
+
+.input-title {
+  margin: 0rpx 20rpx;
+}
+.info {
+  text-align: center;
+  margin: 20rpx 0;
+  font-size: 26rpx;
+}
+.progress {
+  color: red;
+  text-align: center;
+  margin: 20rpx 0;
+}

@@ -1,0 +1,21 @@
+<view class="title" wx:if="{{list&&list.length>0}}">练习错题集：</view>
+
+<view class="item_root" wx:if="{{list&&list.length>0}}">
+  <block wx:for="{{list}}" wx:key="index">
+    <view class="item" bindtap="goQuestionList" data-type="{{item._id}}">{{item._id}}({{item.num}}道错题)</view>
+  </block>
+</view>
+
+
+<view class="title" wx:if="{{testList&&testList.length>0}}">考试错题集：</view>
+
+<view class="item_root" wx:if="{{testList&&testList.length>0}}">
+  <block wx:for="{{testList}}" wx:key="index">
+    <view class="item" bindtap="goTestQuestionList" data-type="{{item._id}}">{{item._id}}({{item.num}}道错题)</view>
+  </block>
+</view>
+
+
+<view wx:if="{{list.length== 0 && testList.length== 0}}" class="nothing" bindtap="goHome">
+  真棒，没有错题啦
+</view>

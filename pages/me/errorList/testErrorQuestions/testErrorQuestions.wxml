@@ -1,0 +1,45 @@
+<view wx:if="{{total>0}}">
+  <view class="tip">第{{current+1}}题/共{{total}}道错题</view>
+  <view class="type">类型：{{subject.type2}}</view>
+  <view class="ti-title">题目：{{subject.title}}</view>
+
+  <!-- <view wx:for="{{subject.options}}" class="item">
+    <text class="{{subject.userSelect==item.code?'red':''}}">{{item.code}}:{{item.option}}</text>
+  </view> -->
+
+
+  <view class="item">
+    <text class="{{subject.userSelect=='A'?'red':''}}">A:{{subject.optionA}}</text>
+  </view>
+  <view class="item">
+    <text class="{{subject.userSelect=='B'?'red':''}}">B:{{subject.optionB}}</text>
+  </view>
+  <view class="item" wx:if="{{subject.optionC}}">
+    <text class="{{subject.userSelect=='C'?'red':''}}">C:{{subject.optionC}}</text>
+  </view>
+  <view class="item" wx:if="{{subject.optionD}}">
+    <text class="{{subject.userSelect=='D'?'red':''}}">D:{{subject.optionD}}</text>
+  </view>
+
+
+
+
+  <view class="rigth_option">正确答案是：
+    <text wx:for="{{subject.answer}}">{{item}}</text>
+  </view>
+  <view class="use-choose">
+    您的选择是：{{subject.userSelect}}
+  </view>
+  <view class="ti-answer" wx:if="{{subject.explain}}">
+    <text>解析：</text>
+    <view>{{subject.explain}}</view>
+  </view>
+  <view class="btn_root">
+    <button type="primary" size="mini" bindtap="pre">上一个错题</button>
+    <button type="primary" size="mini" bindtap="next">下一个错题</button>
+  </view>
+  <button bindtap="removeError" data-subject="{{subject}}">删除当前错题</button>
+</view>
+<view wx:else style="text-align:center;margin:60rpx">
+  真棒，没有错题啦
+</view>
